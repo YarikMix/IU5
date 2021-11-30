@@ -1,19 +1,12 @@
 ﻿/*
-Задача 1
-Записать в вектор Х наибольшие элементы каждой строки матрицы Y размером M x N.
+Задача 2
+Записать в массив L количество нулевых элементов каждого столбца матрицы Z размером M x N.
 */
 
 #include <iostream>
 #include <stdlib.h> // rand, srand
 #include <vector>
-
 using namespace std;
-
-void ShowVector(vector<double>& a)
-{
-    for (vector<double>::iterator it = a.begin(); it != a.end(); ++it)
-        cout << *it << " ";
-}
 
 void ShowMatrix(double** Y, int N, int M)
 {
@@ -26,6 +19,13 @@ void ShowMatrix(double** Y, int N, int M)
     cout << "\n\n\n";
 }
 
+void ShowArray(double* arr, int N)
+{
+    for (int i = 0; i < N; i++)
+        cout << arr[i] << " ";
+    cout << endl;
+}
+
 double** CreateMatrix(int N, int M)
 {
     double** Y = new double* [N];
@@ -36,17 +36,17 @@ double** CreateMatrix(int N, int M)
         for (int j = 0; j < M; j++)
             Y[i][j] = rand() % 10;
 
-    // ShowMatrix(Y, N, M);
+    ShowMatrix(Y, N, M);
 
     return Y;
 }
 
-double GetMaxElem(double* arr, int M)
+double* CreateArray(int M)
 {
-    double max = 0;
+    double* L = new double[M];
     for (int i = 0; i < M; i++)
-        if (max < arr[i]) max = arr[i];
-    return max;
+        L[i] = 0;
+    return L;
 }
 
 int main()
@@ -56,17 +56,11 @@ int main()
     int M = 6;
 
     double** Y = CreateMatrix(N, M);
-
-    ShowMatrix(Y, N, M);
-
-    vector<double> X;
+    double* L = CreateArray(M);
 
     for (int i = 0; i < N; i++)
-    {
-        X.push_back(GetMaxElem(Y[i], M));
-    }
+        for (int j = 0; j < M; j++)
+            if (Y[i][j] == 0) L[j]++;
 
-    ShowVector(X);
-
-    return 0;
+    ShowArray(L, M);
 }
