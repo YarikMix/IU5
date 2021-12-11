@@ -1,0 +1,29 @@
+char* Shifr(const char* vvod_file, const char* kly_file){
+    char* text = ChtenFile(vvod_file);
+    int razm = RazmFile(vvod_file);
+    int* keys = PolKlyMass(kly_file);
+    int keyscount = PolKolSlov(kly_file);
+    int temp;
+    char* codtext = new char[razm];
+    for (int i = 0; i < razm; i++){
+        temp = (int)text[i];
+        if (temp < 0) temp += 256;
+        codtext[i] = (char)((temp + keys[i % keyscount]) % 256);
+    }
+    return codtext;
+}
+
+char* Rashifr(const char* shifr_file, const char* kly_file){
+    char* codtext = ChtenFile(shifr_file);
+    int size = RazmFile(shifr_file);
+    int* keys = PolKlyMass(kly_file);
+    int keyscount = PolKolSlov(kly_file);
+    int temp;
+    char* decodtext = new char[size];
+    for (int i = 0; i < size; i++){
+        temp = (int)codtext[i];
+        if (temp < 0) temp += 256;
+        decodtext[i] = (char)((temp - keys[i % keyscount]) % 256);
+    }
+    return decodtext;
+}

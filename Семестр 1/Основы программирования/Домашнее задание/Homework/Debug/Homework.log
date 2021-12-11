@@ -1,0 +1,4 @@
+﻿  Homework.cpp
+D:\С++\Homework\Homework\Homework.cpp(4,1): warning C4005: '_CRT_SECURE_NO_WARNINGS': macro redefinition
+D:\С++\Homework\Homework\Homework.cpp : message : see previous definition of '_CRT_SECURE_NO_WARNINGS'
+  Homework.vcxproj -> D:\С++\Homework\Debug\Homework.exe
