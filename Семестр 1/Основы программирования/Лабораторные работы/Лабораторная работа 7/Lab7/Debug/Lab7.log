@@ -1,9 +1,0 @@
-﻿  main.cpp
-C:\Users\jmiha\Desktop\Лабы\Lab7\Lab7\main.cpp(53,14): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
-C:\Users\jmiha\Desktop\Лабы\Lab7\Lab7\main.cpp(95,14): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
-C:\Users\jmiha\Desktop\Лабы\Lab7\Lab7\main.cpp(128,14): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
-C:\Users\jmiha\Desktop\Лабы\Lab7\Lab7\main.cpp(141,14): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
-C:\Users\jmiha\Desktop\Лабы\Lab7\Lab7\main.cpp(194,14): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
-C:\Users\jmiha\Desktop\Лабы\Lab7\Lab7\main.cpp(217,14): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
-C:\Users\jmiha\Desktop\Лабы\Lab7\Lab7\main.cpp(235,14): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
-  Lab7.vcxproj -> C:\Users\jmiha\Desktop\Лабы\Lab7\Debug\Lab7.exe

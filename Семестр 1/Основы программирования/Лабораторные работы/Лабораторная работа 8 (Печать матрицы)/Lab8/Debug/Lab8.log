@@ -1,0 +1,4 @@
+﻿  Main.cpp
+C:\Users\jmiha\Desktop\Лабы\Lab8 (Печать матрицы)\Lab8\Main.cpp(50,12): warning C4101: 'Chars': unreferenced local variable
+C:\Users\jmiha\Desktop\Лабы\Lab8 (Печать матрицы)\Lab8\Main.cpp(65,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Lab8.vcxproj -> C:\Users\jmiha\Desktop\Лабы\Lab8 (Печать матрицы)\Debug\Lab8.exe

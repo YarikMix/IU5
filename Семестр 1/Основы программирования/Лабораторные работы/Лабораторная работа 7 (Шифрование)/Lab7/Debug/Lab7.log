@@ -1,0 +1,9 @@
+﻿  Main.cpp
+C:\Users\jmiha\Desktop\Лабы\Lab7 (Шифрование)\Lab7\Main.cpp(24,14): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+C:\Users\jmiha\Desktop\Лабы\Lab7 (Шифрование)\Lab7\Main.cpp(75,14): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+C:\Users\jmiha\Desktop\Лабы\Lab7 (Шифрование)\Lab7\Main.cpp(86,14): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+C:\Users\jmiha\Desktop\Лабы\Lab7 (Шифрование)\Lab7\Main.cpp(149,14): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+C:\Users\jmiha\Desktop\Лабы\Lab7 (Шифрование)\Lab7\Main.cpp(204,14): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+C:\Users\jmiha\Desktop\Лабы\Lab7 (Шифрование)\Lab7\Main.cpp(227,14): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+C:\Users\jmiha\Desktop\Лабы\Lab7 (Шифрование)\Lab7\Main.cpp(253,14): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+  Lab7.vcxproj -> C:\Users\jmiha\Desktop\Лабы\Lab7 (Шифрование)\Debug\Lab7.exe
