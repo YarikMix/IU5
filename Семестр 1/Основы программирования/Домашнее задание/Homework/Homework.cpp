@@ -5,34 +5,43 @@
 using namespace std;
 
 // Печает текст на экран
-void PrintText(char arr[], int size)
+void PrintText(char text[], int size)
 {
     for (int i = 0; i < size; i++)
-        cout << arr[i];
+        cout << text[i];
     cout << endl;
 }
 
 // Генерирует текст
 char* GenerateText(int size)
 {
-    char* arr = new char[size];
+    char* text = new char[size + 1];
     const char alphanum1[] = "abcdefghijklmnopqrstuvwxyz";
     const char alphanum2[] = "abcdefghijklmnopqrstuvwxyz       ";
     // const char alphanum3[] = "abcdefghijklmnopqrstuvwxyz       ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{|}~";
 
-    arr[0] = alphanum1[rand() % (sizeof(alphanum1) - 1)];  // Первый символ не должен быть пробелом
+    text[0] = alphanum1[rand() % (sizeof(alphanum1) - 1)];  // Первый символ не должен быть пробелом
 
     for (int i = 1; i < size - 1; i++)
-        arr[i] = alphanum2[rand() % (sizeof(alphanum2) - 1)];
+        text[i] = alphanum2[rand() % (sizeof(alphanum2) - 1)];
 
-    arr[size - 1] = alphanum1[rand() % (sizeof(alphanum1) - 1)];  // Последний символ не должен быть пробелом
+    text[size - 1] = alphanum1[rand() % (sizeof(alphanum1) - 1)];  // Последний символ не должен быть пробелом
 
 
-    return arr;
+    return text;
 
 }
 
-// Читает текст из файла
+// Вводим текст с клавиатуры
+char* EnterText(int size)
+{
+    char* text = new char[size];
+    cout << "Ввведите текст: ";
+    cin.getline(text, size + 1);
+    return text;
+}
+
+// Считывает текст из файла
 char* ReadFile(const char* title, int size)
 {
     char* s = new char[size];
@@ -52,26 +61,26 @@ char* ReadFile(const char* title, int size)
 
 }
 
-// Вовращает индекс последнего вхождения символа в текст
-int GetLastEntry(char arr[], int size, char symbol)
+// Возвращает индекс последнего вхождения символа в текст
+int GetLastEntry(char* text, int size, char symbol)
 {
     for (int i = size; i > 0; i--)
-        if (arr[i] == symbol)
+        if (text[i] == symbol)
             return i;
     return -1;
 }
 
 // Возвращает последнее слово в тексте
-char* GetLastWord(char arr[], int size, int& wordsize)
+char* GetLastWord(char* text, int size, int& wordsize)
 {
-    int p = GetLastEntry(arr, size, ' ');
+    int p = GetLastEntry(text, size, ' ');
     int j = 0;
     int len = size - p - 1;
     char* result = new char[size - p - 1];
 
     for (int i = p + 1; i < size; i++)
     {
-        result[j] = arr[i];
+        result[j] = text[i];
         j++;
     }
 
@@ -81,7 +90,7 @@ char* GetLastWord(char arr[], int size, int& wordsize)
 }
 
 // Возвращает индекс первого вхождение символва в текст (не используется)
-int find(char arr[], int size, char symbol)
+int Find(char arr[], int size, char symbol)
 {
     while (true)
     {
@@ -109,26 +118,26 @@ int Сontains(char arr[], int size, char symbol)
 }
 
 // Возвращает количество пробелов в тексте
-int SpacesCount(char arr[], int size)
+int SpacesCount(char* text, int size)
 {
     int count = 0;
     for (int i = 0; i < size; i++)
     {
-        if (arr[i] == ' ')
+        if (text[i] == ' ')
             count++;
     }
     return count;
 }
 
-// Вовращает массив с индексами пробелов
-int* FindSpaces(char arr[], int size)
+// Возвращает массив с индексами пробелов
+int* FindSpaces(char* text, int size)
 {
-    int* SpacesIdx = new int[SpacesCount(arr, size)];  // Массив с индексами пробелов
+    int* SpacesIdx = new int[SpacesCount(text, size)];  // Массив с индексами пробелов
     int j = 0;
 
     for (int i = 0; i < size; i++)
     {
-        if (arr[i] == ' ')
+        if (text[i] == ' ')
         {
             SpacesIdx[j] = i;
             j++;
@@ -138,7 +147,7 @@ int* FindSpaces(char arr[], int size)
     return SpacesIdx;
 }
 
-// Вовзращает true - если слово целиком состоит из пробелов, в обратном случае со
+// Возвращает true - если слово целиком состоит из пробелов, в обратном случае возвращает false
 bool IsOnlyContainSpaces(char* word, int len)
 {
     for (int i = 0; i < len; i++)
@@ -148,7 +157,7 @@ bool IsOnlyContainSpaces(char* word, int len)
 }
 
 // Обрезает текст по заданным границам
-char* trim(char arr[], int idx1, int idx2, int& wordsize)
+char* Trim(char* text, int idx1, int idx2, int& wordsize)
 {
     char* result;
     int i;
@@ -158,7 +167,7 @@ char* trim(char arr[], int idx1, int idx2, int& wordsize)
         result = new char[idx2 - idx1 + 1];
         for (i = idx1; i < idx2; i++)
         {
-            result[j] = arr[i];
+            result[j] = text[i];
             j++;
         }
 
@@ -167,7 +176,7 @@ char* trim(char arr[], int idx1, int idx2, int& wordsize)
         result = new char[idx2 - idx1];
         for (i = idx1 + 1; i < idx2; i++)
         {
-            result[j] = arr[i];
+            result[j] = text[i];
             j++;
         }
     }
@@ -188,9 +197,10 @@ bool CompareWord(char* word1, int size1, char* word2, int size2)
     return true;
 }
 
-/* Проверяем, совпадает ли слово с конечным отрезком из алфавита(z, yz, xyz, ...)
-   Для этого проходимся по каждому слову (z, yz, xyz, ...) и проверяем, если 
-   оба слова совпадают, то возвращает true
+/* 
+Проверяем, совпадает ли слово с конечным отрезком из алфавита(z, yz, xyz, ...)
+Для этого проходимся по каждому слову (z, yz, xyz, ...) и проверяем, если 
+оба слова совпадают, то возвращает true
 */
 bool CheckWord(char* word, int size)
 {
@@ -207,7 +217,6 @@ bool CheckWord(char* word, int size)
             s[l] = j;
             l++;
         }
-        // test[len] = i;
 
         if (CompareWord(word, size, s, len)) return true;
     }
@@ -220,11 +229,10 @@ int main()
     setlocale(LC_ALL, "rus");                               // Исправляем русский язык в консоли
     int size = 80;                                          // Количество символов в тексте
 
-    char *text = ReadFile("text.txt", size);                // Считываем текст из файла
-    // char* text = GenerateText(size);                        // Генерируем текст
-    // char* text = new char[size];
-    // cin.getline(text, 80);
-    PrintText(text, size);                                  // Печатаем текст
+    char *text = EnterText(size);                           // Считываем текст из файла
+    // char* text = GenerateText(size);                     // Генерируем текст
+    // char* text = ReadFile("text.txt", size);
+    PrintText(text, size);
 
     int lastwordlen;                                        // Длина последнего слова
     char* lastword = GetLastWord(text, size, lastwordlen);  // Последнее слово
@@ -238,16 +246,18 @@ int main()
     int wordlen;
     bool flag;
 
+    cout << "Слова, удовлетворяющие условию задачи: " << endl;
     for (int k = 0; k < spacescount - 1; k++)
     {
         lastidx = SpacesIdx[k];
         nextidx = SpacesIdx[k + 1];
-        word = trim(text, lastidx, nextidx, wordlen);                     // Проходимся по каждому слову в тексте, кроме последнего
-        flag = IsOnlyContainSpaces(word, wordlen);                        // Проверяем, состоит ли слово целиком из пробелов
-
-        if (flag) continue;                                               // Если слово состоит только из проблелов - пропускаем
-        if (CompareWord(lastword, lastwordlen, word, wordlen)) continue;  // Если слово совпадает с последним словом - пропускаем
-
-        if (CheckWord(word, wordlen)) PrintText(word, wordlen);           // Если слово удовлетворяет всем условиям
+        word = Trim(text, lastidx, nextidx, wordlen);                      // Проходимся по каждому слову в тексте, кроме последнего
+        
+        bool flag1 = IsOnlyContainSpaces(word, wordlen);                   // Если слово состоит только из проблелов - пропускаем
+        bool flag2 = CompareWord(lastword, lastwordlen, word, wordlen);    // Если слово совпадает с последним словом - пропускаем
+        if (flag1 || flag2) continue;                                              
+        
+        if (CheckWord(word, wordlen)) PrintText(word, wordlen);            // Если слово удовлетворяет всем условиям - печатаем
     }
+    return 0;
 }
