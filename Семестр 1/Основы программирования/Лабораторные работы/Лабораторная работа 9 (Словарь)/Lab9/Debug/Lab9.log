@@ -1,0 +1,6 @@
+﻿  Main.cpp
+C:\Users\jmiha\Desktop\Лабы\Lab9\Lab9\Main.cpp(107,19): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\jmiha\Desktop\Лабы\Lab9\Lab9\Main.cpp(111,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\jmiha\Desktop\Лабы\Lab9\Lab9\Main.cpp(117,19): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\jmiha\Desktop\Лабы\Lab9\Lab9\Main.cpp(184,14): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Lab9.vcxproj -> C:\Users\jmiha\Desktop\Лабы\Lab9\Debug\Lab9.exe
