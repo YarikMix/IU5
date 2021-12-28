@@ -1,0 +1,12 @@
+﻿  main.cpp
+C:\Users\jmiha\Desktop\Лабы\Practice (Спортсмены)\Practice\main.cpp(24,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jmiha\Desktop\Лабы\Practice (Спортсмены)\Practice\main.cpp(60,9): warning C4101: 'sum': unreferenced local variable
+C:\Users\jmiha\Desktop\Лабы\Practice (Спортсмены)\Practice\main.cpp(94,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jmiha\Desktop\Лабы\Practice (Спортсмены)\Practice\main.cpp(96,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\jmiha\Desktop\Лабы\Practice (Спортсмены)\Practice\main.cpp(118,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jmiha\Desktop\Лабы\Practice (Спортсмены)\Practice\main.cpp(119,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jmiha\Desktop\Лабы\Practice (Спортсмены)\Practice\main.cpp(157,23): warning C4018: '<': signed/unsigned mismatch
+  utils.cpp
+C:\Users\jmiha\Desktop\Лабы\Practice (Спортсмены)\Practice\utils.cpp(122,9): warning C4101: 'Chars': unreferenced local variable
+  Generating Code...
+  Practice.vcxproj -> C:\Users\jmiha\Desktop\Лабы\Practice (Спортсмены)\Debug\Practice.exe
