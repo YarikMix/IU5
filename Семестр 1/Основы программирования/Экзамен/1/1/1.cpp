@@ -1,72 +1,129 @@
 ﻿/*
 Задача 1
-Записать в вектор Х наибольшие элементы каждой строки матрицы Y размером M x N.
+Заполнить квадратную матрицу диагональной змейкой, начиная справа сверху
 */
 
 #include <iostream>
-#include <stdlib.h> // rand, srand
-#include <vector>
-
+#include <iomanip>
 using namespace std;
 
-void ShowVector(vector<double>& a)
+double** CreateMatrix(int N)
 {
-    for (vector<double>::iterator it = a.begin(); it != a.end(); ++it)
-        cout << *it << " ";
+    double** A = new double* [N];
+    for (int i = 0; i < N; i++)
+    {
+        A[i] = new double[N];
+        for (int j = 0; j < N; j++)
+            A[i][j] = 0;
+    }
+
+    return A;
 }
 
-void ShowMatrix(double** Y, int N, int M)
+void ShowMatrix(double** A, int N)
 {
     for (int i = 0; i < N; i++)
     {
-        for (int j = 0; j < M; j++)
-            cout << Y[i][j] << " ";
+        for (int j = 0; j < N; j++)
+            cout << A[i][j] << setw(4) << " ";
         cout << endl;
     }
     cout << "\n\n\n";
 }
 
-double** CreateMatrix(int N, int M)
+void FillMatrix(double** A, int N)
 {
-    double** Y = new double* [N];
-    for (int i = 0; i < N; i++)
-        Y[i] = new double[M];
+    int x = 0, y = 0;
+    int value = 1;
 
-    for (int i = 0; i < N; i++)
-        for (int j = 0; j < M; j++)
-            Y[i][j] = rand() % 10;
+    // заполнение первой половины массива по диагонали, зигзагом, начиная слева и сверху, заканчивая  побочной диагональю
+    for (int diag = 0; diag < N; diag++) // выполняем проход по диагоналям
+    {
+        if (diag % 2 == 0) // по четным диагоналям
+        {
+            x = 0; // х-координата первого элемента массива на диагонали - diag
+            y = N - diag - 1; // у-координата элемента массива на диагонали - diag
 
-    // ShowMatrix(Y, N, M);
+            while (y <= N - 1) // пока y-координата находится в верхней части диагонали
+            {
+                A[x][y] = value; // записать значение в массив
+                value++;
+                x++;     // по горизонтали, смещаемся вправо
+                y++;    // по вертикали, смещаемся вниз
+            }
+        }
+        else // по нечетным диагоналям
+        {
+            x = diag; // х-координата элемента массива на диагонали - diag
+            y = N - 1; // у-координата первого элемента массива на диагонали - diag
 
-    return Y;
-}
+            while (x >= 0) // пока x-координата находится в левой части диагонали
+            {
+                A[x][y] = value; // записать значение в массив
+                value++;
+                x--;  // по горизонтали, смещаемся вправо
+                y--;  // по вертикали, смещаемся вверх
+            }
+        }
+       
+    } 
 
-double GetMaxElem(double* arr, int M)
-{
-    double max = 0;
-    for (int i = 0; i < M; i++)
-        if (max < arr[i]) max = arr[i];
-    return max;
+    /*
+    11    10    4    3    1
+    0     12    9    5    2
+    0     0     13   8    6
+    0     0     0    14   7
+    0     0     0    0    15
+    */
+
+    // заполнение первой половины массива по диагонали, зигзагом, начиная слева и сверху, заканчивая  побочной диагональю
+    for (int diag = N - 2; diag >= 0; diag--) // выполняем проход по диагоналям
+    {
+        if (diag % 2 == 0) // по четным диагоналям
+        {
+            x = N - diag - 1; // х-координата первого элемента массива на диагонали - diag
+            y = 0; // у-координата элемента массива на диагонали - diag
+
+            while (x <= N - 1) // пока y-координата находится в верхней части диагонали
+            {
+                A[x][y] = value; // записать значение в массив
+                value++;
+                x++;     // по горизонтали, смещаемся вправо
+                y++;    // по вертикали, смещаемся вниз
+            }
+        }
+        else // по нечетным диагоналям
+        {
+            x = N - 1; // х-координата элемента массива на диагонали - diag
+            y = diag ; // у-координата первого элемента массива на диагонали - diag
+
+            while (y >= 0) // пока x-координата находится в левой части диагонали
+            {
+                A[x][y] = value; // записать значение в массив
+                value++;
+                x--;  // по горизонтали, смещаемся вправо
+                y--;  // по вертикали, смещаемся вверх
+            }
+        }
+    }
+
+    /*
+    11    10    4     3     1
+    19    12    9     5     2
+    20    18    13    8     6
+    24    21    17    14    7
+    25    23    22    16    15
+    */
 }
 
 int main()
 {
-    srand((unsigned int)time(NULL));
     int N = 5;
-    int M = 6;
 
-    double** Y = CreateMatrix(N, M);
+    double** A = CreateMatrix(N);
 
-    ShowMatrix(Y, N, M);
-
-    vector<double> X;
-
-    for (int i = 0; i < N; i++)
-    {
-        X.push_back(GetMaxElem(Y[i], M));
-    }
-
-    ShowVector(X);
+    FillMatrix(A, N);
+    ShowMatrix(A, N);
 
     return 0;
 }
