@@ -116,6 +116,11 @@ void FillMatrix(double** A, int N)
     */
 }
 
+void Clear(double** A)
+{
+    delete[] A;
+}
+
 int main()
 {
     int N = 5;
@@ -124,6 +129,7 @@ int main()
 
     FillMatrix(A, N);
     ShowMatrix(A, N);
+    Clear(A);
 
     return 0;
 }
