@@ -56,10 +56,16 @@ void ReverseArray(int* X, int N)
     }
 }
 
+void ReplaceArray(int** A, int* B, int N)
+{
+    for (int i = 0; i < N; i++)
+        A[0][i] = B[i];
+}
+
 void SortMatrix(int** A, int N)
 {
-    int* B = GetArray(A[N - 1], N);
-    ReverseArray(B, N - 1);
+    int* B = GetArray(A[N - 1], N); // Получаем последнюю строку матрицы
+
     
     // Циклическая перестановка строк матрицы A
     for (int i = N - 1; i >= 0; --i) {
@@ -67,9 +73,9 @@ void SortMatrix(int** A, int N)
             A[j][i] = A[j - 1][i];
         }
     }
-    
-    for (int i = 0; i < N; i++)
-        A[0][i] = B[i];
+
+    ReverseArray(B, N - 1); // Разворачиваем последнюю строку матрицы
+    ReplaceArray(A, B, N);  // Заменяем первую строку полученной матрицы
 
     printMatrix(A, N);
     delete[] B;
