@@ -2,14 +2,14 @@
 #include <iomanip>
 using namespace std;
 
-double** CreateMatrix(int N)
+int** CreateMatrix(int N)
 {
-    double** A = new double* [N];
+    int** A = new int* [N];
     int value = 1;
 
     for (int i = 0; i < N; i++)
     {
-        A[i] = new double[N];
+        A[i] = new int[N];
         for (int j = 0; j < N; j++)
         {
             A[i][j] = value;
@@ -19,7 +19,7 @@ double** CreateMatrix(int N)
     return A;
 }
 
-void printMatrix(double** A, int N)
+void printMatrix(int** A, int N)
 {
     for (int i = 0; i < N; i++)
     {
@@ -30,14 +30,14 @@ void printMatrix(double** A, int N)
     cout << "\n\n\n";
 }
 
-void Clear(double** A)
+void Clear(int** A)
 {
     delete[] A;
 }
 
-double* GetArray(double* X, int N)
+int* GetArray(int* X, int N)
 {
-    double* B = new double[N + 1];
+    int* B = new int[N + 1];
     for (int i = 0; i < N; i++)
     {
         B[i] = X[i];
@@ -45,7 +45,7 @@ double* GetArray(double* X, int N)
     return B;
 }
 
-void ReverseArray(double* X, int N)
+void ReverseArray(int* X, int N)
 {
     int i = 0;
     while (i < N)
@@ -56,9 +56,9 @@ void ReverseArray(double* X, int N)
     }
 }
 
-void SortMatrix(double** A, int N)
+void SortMatrix(int** A, int N)
 {
-    double* B = GetArray(A[N - 1], N);
+    int* B = GetArray(A[N - 1], N);
     ReverseArray(B, N - 1);
     
     // Циклическая перестановка строк матрицы A
@@ -78,7 +78,7 @@ void SortMatrix(double** A, int N)
 int main()
 {
     int N = 4;
-    double** A = CreateMatrix(N);
+    int** A = CreateMatrix(N);
     printMatrix(A, N);
     SortMatrix(A, N);
     Clear(A);

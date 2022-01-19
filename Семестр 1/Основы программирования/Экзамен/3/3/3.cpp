@@ -1,19 +1,19 @@
 ﻿#include <iostream>
 using namespace std;
 
-double** CreateMatrix(int N)
+int** CreateMatrix(int N)
 {
-    double** A = new double* [N];
+    int** A = new int* [N];
     for (int i = 0; i < N; i++)
     {
-        A[i] = new double[N];
+        A[i] = new int[N];
         for (int j = 0; j < N; j++)
             cin >> A[i][j];
     }
     return A;
 }
 
-void PrintMatrix(double** A, int N)
+void PrintMatrix(int** A, int N)
 {
     for (int i = 0; i < N; i++)
     {
@@ -24,9 +24,9 @@ void PrintMatrix(double** A, int N)
     cout << "\n\n\n";
 }
 
-void Proizv(double** A, int N)
+void Proizv(int** A, int N)
 {
-    double res = 1;
+    int res = 1;
     for (int i = 0; i < N; i++)
         for (int j = 0; j < N; j++)
             if (j > N - i - 1)
@@ -38,7 +38,7 @@ void Proizv(double** A, int N)
 int main()
 {
     int N = 3;
-    double** A = CreateMatrix(N);
+    int** A = CreateMatrix(N);
     PrintMatrix(A, N);
     Proizv(A, N);
     return 1;

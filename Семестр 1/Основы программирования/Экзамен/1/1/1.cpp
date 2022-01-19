@@ -7,12 +7,12 @@
 #include <iomanip>
 using namespace std;
 
-double** CreateMatrix(int N)
+int** CreateMatrix(int N)
 {
-    double** A = new double* [N];
+    int** A = new int* [N];
     for (int i = 0; i < N; i++)
     {
-        A[i] = new double[N];
+        A[i] = new int[N];
         for (int j = 0; j < N; j++)
             A[i][j] = 0;
     }
@@ -20,7 +20,7 @@ double** CreateMatrix(int N)
     return A;
 }
 
-void ShowMatrix(double** A, int N)
+void ShowMatrix(int** A, int N)
 {
     for (int i = 0; i < N; i++)
     {
@@ -31,7 +31,7 @@ void ShowMatrix(double** A, int N)
     cout << "\n\n\n";
 }
 
-void FillMatrix(double** A, int N)
+void FillMatrix(int** A, int N)
 {
     int x = 0, y = 0;
     int value = 1;
@@ -116,20 +116,21 @@ void FillMatrix(double** A, int N)
     */
 }
 
-void Clear(double** A)
+void Clear(int** X)
 {
-    delete[] A;
+    delete[] X;
 }
+
 
 int main()
 {
     int N = 5;
 
-    double** A = CreateMatrix(N);
-
+    int** A = CreateMatrix(N);
+    ShowMatrix(A, N);
     FillMatrix(A, N);
     ShowMatrix(A, N);
-    Clear(A);
 
+    Clear(A);
     return 0;
 }
