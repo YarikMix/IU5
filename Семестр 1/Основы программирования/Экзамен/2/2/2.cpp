@@ -60,13 +60,13 @@ void SortMatrix(double** A, int N)
 {
     double* B = GetArray(A[N - 1], N);
     ReverseArray(B, N - 1);
-
+    
+    // Циклическая перестановка строк матрицы A
     for (int i = N - 1; i >= 0; --i) {
         for (int j = N - 1; j > 0; --j) {
             A[j][i] = A[j - 1][i];
         }
     }
-
     
     for (int i = 0; i < N; i++)
         A[0][i] = B[i];
