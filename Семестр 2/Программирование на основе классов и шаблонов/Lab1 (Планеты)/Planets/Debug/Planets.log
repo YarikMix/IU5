@@ -1,0 +1,3 @@
+﻿  Planets.cpp
+C:\Users\jmiha\Desktop\С++\Лабы\Lab1 (Планеты)\Planets\Planets.cpp(288,26): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Planets.vcxproj -> C:\Users\jmiha\Desktop\С++\Лабы\Lab1 (Планеты)\Debug\Planets.exe
