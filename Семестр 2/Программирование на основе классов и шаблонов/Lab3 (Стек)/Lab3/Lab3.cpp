@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-#include "myStack.h"
+#include "Stack.h"
 using namespace std;
 
 int nod(int& n) {
@@ -11,17 +11,16 @@ int nod(int& n) {
 	return d;
 }
 
-
-int main()
+void Calculate(int n)
 {
-    system("chcp 1251 > nul");
-    setlocale(LC_ALL, "rus");
+	if (n == 1)
+	{
+		cout << "Количество множителей: 1" << endl << "1" << endl << "1" << "\n\n\n";
+		return;
+	}
 
-	myStack adiv;
-	myStack ddiv;
-	int n;
-	cout << "Введите число для разложения: ";
-	cin >> n;
+	Stack adiv;
+	Stack ddiv;
 
 	while (n != 1)
 	{
@@ -48,5 +47,33 @@ int main()
 			cout << " * ";
 	}
 
-	cout << endl;
+	cout << "\n\n\n";
+}
+
+int getInt(void)
+{
+	double num;
+
+	cout << "Введите число для разложения\n> ";
+	cin >> num;
+	while (num != static_cast<int>(num) || num <= 0)
+	{
+		cout << "Число должно быть целым и положительным!\n> ";
+		cin >> num;
+	}
+
+	cin.ignore(80, '\n');
+	return static_cast<int>(num);
+}
+
+int main()
+{
+    system("chcp 1251 > nul");
+    setlocale(LC_ALL, "rus");
+
+	while (true)
+	{
+		int n = getInt();
+		Calculate(n);
+	}
 }
