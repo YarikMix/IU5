@@ -50,7 +50,7 @@ void Calculate(int n)
 	cout << "\n\n\n";
 }
 
-int getInt(void)
+int getInt()
 {
 	double num;
 

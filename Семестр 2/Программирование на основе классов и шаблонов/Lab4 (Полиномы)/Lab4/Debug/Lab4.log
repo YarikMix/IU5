@@ -1,2 +1,4 @@
-﻿  Lab4.cpp
-  Lab4.vcxproj -> C:\Users\jmiha\Desktop\С++\Лабы\Lab4\Debug\Lab4.exe
+﻿  Main.cpp
+C:\Users\jmiha\YandexDisk\Вуз\С++\Лабы\Lab4 (Полиномы)\Lab4\Term.h(59,66): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\jmiha\YandexDisk\Вуз\С++\Лабы\Lab4 (Полиномы)\Lab4\Term.h(60,66): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Lab4.vcxproj -> C:\Users\jmiha\YandexDisk\Вуз\С++\Лабы\Lab4 (Полиномы)\Debug\Lab4.exe

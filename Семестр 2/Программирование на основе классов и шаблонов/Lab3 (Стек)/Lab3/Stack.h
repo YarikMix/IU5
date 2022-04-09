@@ -23,7 +23,7 @@ class Stack
 		inline void push(int info);
 		inline bool pop(int& info);
 		inline bool empty(int info);
-		inline int size() { return n; };
+		inline int size();
 };
 
 Stack::~Stack() {
@@ -54,5 +54,9 @@ bool Stack::pop(int& info) {
 }
 
 bool Stack::empty(int info) {
-	return Current == NULL ? true : false;
+	return Current == NULL;
+}
+
+int Stack::size() {
+	return  n;
 }
