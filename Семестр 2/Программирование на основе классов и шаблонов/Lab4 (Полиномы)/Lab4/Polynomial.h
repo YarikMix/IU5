@@ -197,9 +197,14 @@ class Polynomial
                 else
                 {
                     char symbol = X > 0 ? '+' : '-';
-                    out << " " << symbol << " " << abs(X);
+                    out << " " << symbol << " ";
+                    if (abs(X) != 1)
+                    {
+                        out << abs(X);
+                    }
                 }
 
+                
                 Y == 0 ? out << "" : out << "x^" << Y;
                 n++;
 
