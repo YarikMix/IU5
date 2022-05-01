@@ -1,0 +1,5 @@
+﻿  Main.cpp
+  Utils.cpp
+  Generating Code...
+C:\Users\jmiha\YandexDisk\Вуз\С++\ДЗ\ДЗ\Main.cpp(49): warning C4715: 'FindCard': not all control paths return a value
+  ДЗ.vcxproj -> C:\Users\jmiha\YandexDisk\Вуз\С++\ДЗ\Debug\ДЗ.exe
