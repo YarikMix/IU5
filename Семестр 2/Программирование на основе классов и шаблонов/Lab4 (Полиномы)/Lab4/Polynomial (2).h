@@ -203,11 +203,11 @@ class Polynomial
                     }
                     else if (X < 0)
                     {
-                        out << "-X";
+                        out << X;
                     }
-                    else if (X < 0)
+                    else if (X > 0)
                     {
-                        out << "-X";
+                        out << X;
                     }
 
                 }

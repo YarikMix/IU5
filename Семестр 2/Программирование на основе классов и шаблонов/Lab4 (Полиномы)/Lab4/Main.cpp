@@ -11,18 +11,11 @@ int main()
     Polynomial p1, p2;
 
     p1 += Term(1, 1);
-    p1 += Term(2, 0);
-    cout << p1;
+    p1 += Term(-2, 0);
 
-    p2 += Term(-1, 1);
+    p2 += Term(1, 1);
     p2 += Term(2, 0);
-    cout << p2;
-
-    cout << "\n\n\n\n";
-
 
     cout << p1 * p2;
     
-
-
 }
