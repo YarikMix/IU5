@@ -28,8 +28,14 @@ class Card
         int* getDate() { return this->date; }
         int getTime() { return this->time; }
 
+
         void Print()
         {
-            std::cout << this->name << " " << FormatDate(this->date) << " " << FormatTime(this->time) << std::endl;
+            std::cout << this->name + " " + FormatDate(this->date) + " " + FormatTime(this->time) + "\n";
+        };        
+        
+        void ShowNotification()
+        {
+            std::cout << this->name << " должен заплатить " + std::to_string(this->time * 100) << " рублей за разговор " << FormatDate(this->date) << std::endl;
         };
 };

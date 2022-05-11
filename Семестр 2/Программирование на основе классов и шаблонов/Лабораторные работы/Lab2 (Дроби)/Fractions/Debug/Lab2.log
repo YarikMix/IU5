@@ -1,2 +1,0 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Lab2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Lab2.vcxproj -> C:\Users\jmiha\YandexDisk\Вуз\С++\Лабы\Lab2 (Дроби)\Debug\Fractions.exe
