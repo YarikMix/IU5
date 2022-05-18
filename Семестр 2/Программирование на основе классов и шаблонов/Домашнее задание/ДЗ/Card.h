@@ -1,8 +1,10 @@
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <vector>
 #include <string>
 #include "Utils.h"
+
 class Card
 {
     private:
@@ -19,23 +21,18 @@ class Card
             this->time = time;
         }
 
-        friend void operator<< (std::ostream& out, Card card)
-        {
-            out << card.name << " " << FormatDate(card.date) << " " << FormatTime(card.time) << std::endl;
-        };
-
         std::string getName() { return this->name; }
         int* getDate() { return this->date; }
-        int getTime() { return this->time; }
-
-
-        void Print()
-        {
-            std::cout << this->name + " " + FormatDate(this->date) + " " + FormatTime(this->time) + "\n";
-        };        
+        int getTime() { return this->time; }      
         
         void ShowNotification()
         {
-            std::cout << this->name << " должен заплатить " + std::to_string(this->time * 100) << " рублей за разговор " << FormatDate(this->date) << std::endl;
+            float price = this->time * 2.5 / 60 * 10;
+            std::cout << std::fixed << std::setprecision(2) << "Абонент " << this->name << " должен заплатить " << price << " рублей за разговор " << FormatDate(this->date) << std::endl;
+        };
+
+        friend void operator<< (std::ostream& out, Card card)
+        {
+            out << card.name << " " << FormatDate(card.date) << " " << FormatTime(card.time) << std::endl;
         };
 };

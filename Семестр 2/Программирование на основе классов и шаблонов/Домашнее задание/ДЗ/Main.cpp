@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <vector>
 #include <string>
@@ -16,10 +17,18 @@ void PrintCards()
     }
     else
     {
+        cout << "|          Имя          |   Дата разговора   |   Время разговора   |" << endl;
         for (vector<Card>::iterator it = cards.begin(); it != cards.end(); ++it)
         {
             Card card = (*it);
-            card.Print();
+            cout.width(20);
+            cout << card.getName();
+            cout.width(20);
+            cout << FormatDate(card.getDate());
+            cout.width(20);
+            cout << FormatTime(card.getTime());
+            cout.width(20);
+            cout << "\n";
         }
     }
 }
@@ -44,46 +53,59 @@ void AddCard(string name, int date[3], int duration)
     cards.push_back(card);
 }
 
-void InputCard()
-{
-    string name;
-    string date;
-    int duration;
-
-    cout << "Введите имя\n> ";
-    cin.ignore(1000, '\n');
-    getline(cin, name);
-
-    cout << "Введите дату разговора\n> ";
-    getline(cin, date);
-
-    cout << "Введите время разговора\n> ";
-    cin >> duration;
-
-    AddCard(name, GetDate(date), duration);
-    UpdateFile();
-}
-
-Card FindCard(string name)
-{
-    for (auto& card : cards)
-    {
-        if (card.getName() == name)
-        {
-            return card;
-        }
-    }
-    cout << "Карта с именем '" << name << "' не найдена" << endl;
-}
-
 bool isUnique(string name, string date, int duration)
 {
-    for (vector<Card>::iterator it = cards.begin(); it != cards.end(); ++it)
+    for (auto it = cards.begin(); it != cards.end(); ++it)
     {
         Card card = (*it);
         if (card.getName() == name && FormatDate(card.getDate()) == date && card.getTime() == duration) return false;
     }
     return true;
+}
+
+bool isUnique(string name, int* date, int duration)
+{
+    for (auto it = cards.begin(); it != cards.end(); ++it)
+    {
+        Card card = (*it);
+        if (card.getName() == name && FormatDate(card.getDate()) == FormatDate(date) && card.getTime() == duration) return false;
+    }
+    return true;
+}
+
+void InputCard()
+{
+    string name;
+    int * date;
+    int duration;
+
+    name = InputName();
+    date = InputDate();
+    duration = InputDuration();
+
+    if (isUnique(name, date, duration))
+    {
+        AddCard(name, date, duration);
+        UpdateFile();
+        cout << "Текущее количество карточек: " << cards.size() << endl;
+    }
+    else
+    {
+        cout << "Такая запись уже существует!" << endl;
+    }
+}
+
+int FindCard(string name)
+{
+    int i = 0;  // counter.
+    for (auto it = cards.begin(); it != cards.end(); it++, i++)
+    {
+        if (cards.at(i).getName() == name)
+        {
+            return i;
+        }
+    }
+    return -1;
 }
 
 void LoadCards()
@@ -159,9 +181,8 @@ void GenerateCards()
         {
             GenerateCard();
         }
+        cout << "Картотека успешна создана!" << endl;
         UpdateFile();
-        cout << "Картотека успешна сгенерирована!" << endl;
-        cout << "Текущее количество карточек: " + to_string(cards.size()) << endl;
     }
 }
 
@@ -173,8 +194,17 @@ void ShowNotification()
     }
     else
     {
-        Card card = GetRandomCard();
-        card.ShowNotification();
+        string name = InputName();
+        int i = FindCard(name);
+        if (i != -1)
+        {
+            Card card = cards.at(i);
+            card.ShowNotification();
+        }
+        else
+        {
+            cout << "Карта с именем '" << name << "' не найдена" << endl;
+        }
     }
 }
 
@@ -205,7 +235,7 @@ int main()
          << "2 - прочитать картотеку с файла \n"
          << "3 - вывести всю картотеку \n"
          << "4 - ввести номер телефона, дату и время разговора \n"
-         << "5 - вывести извещание на оплату телефонного разговора \n"
+         << "5 - вывести извещение на оплату телефонного разговора \n"
          << "6 - выйти из программы \n\n\n";
 
     while (true) {

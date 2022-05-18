@@ -23,17 +23,17 @@ public:
         this->volume = volume;
     }
 
-    ~Book()
-    {
-        delete this->author;
-        delete this->title;
-    }
-
     Book(const Book& book)
     {
         this->author = _strdup(book.author);
         this->title = _strdup(book.title);
         this->volume = book.volume;
+    }
+
+    ~Book()
+    {
+        delete this->author;
+        delete this->title;
     }
 
     Book operator= (Book book)
