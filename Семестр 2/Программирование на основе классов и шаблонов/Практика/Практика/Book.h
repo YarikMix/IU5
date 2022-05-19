@@ -13,7 +13,7 @@ public:
     {
         this->author = nullptr;
         this->title = nullptr;
-        this->volume = volume;
+        this->volume = 0;
     }
 
     Book(const char* author, const char* title, int volume)
@@ -32,14 +32,19 @@ public:
 
     ~Book()
     {
+        this->author = _strdup("");
+        this->title = _strdup("");
+        cout << "!" << endl;
         delete this->author;
         delete this->title;
+        this->author = nullptr;
+        this->title = nullptr;
     }
 
     Book operator= (Book book)
     {
-        this->author = book.author;
-        this->title = book.title;
+        this->author = _strdup(book.author);
+        this->title = _strdup(book.title);
         this->volume = book.volume;
         return *this;
     }
@@ -58,6 +63,10 @@ public:
     }
 
     friend void operator<< (ostream& out, Book book) {
-        out << (const char*)book.author << " '" << (const char*)book.title << " ' - " << book.volume << endl;
+        if (book.author != NULL)
+            out << (const char*)book.author << " ";
+        else if (book.title != NULL)
+            out << " '" << (const char*)book.title << " ' - ";
+        out << book.volume << endl;
     };
 };
